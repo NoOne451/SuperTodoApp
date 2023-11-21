@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none !important;
+  overflow-x: hidden;
+  overflow: hidden;
+}
+
+.hide::-webkit-scrollbar {
+  scrollbar-width: 0;
+  display: none;
+}
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.active {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.2);
+}
