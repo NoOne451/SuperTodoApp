@@ -62,7 +62,7 @@ export default function ProjectPage({
   return (
     <>
       <div className="sm:w-[75%] p-6 sm:p-10 h-full flex flex-col gap-3 ">
-        <div className="w-full flex justify-between">
+        <div className="w-full flex justify-between flex-shrink-0">
           <span className="text-[40px] font-bold">{title}</span>
           <div className="space-x-2">
             <button
@@ -93,12 +93,12 @@ export default function ProjectPage({
             </button>
           </div>
         </div>
-        <div className="text-gray-400">{formatedDate}</div>
-        <div>{discription}</div>
+        <div className="text-gray-400 flex-shrink-0">{formatedDate}</div>
+        <div className="flex-shrink-0">{discription}</div>
         <div className=" border-t border-black border-solid w-[140%] mt-3 ml-[-30px]"></div>
         <div className="flex flex-col sm:gap-6 gap-3">
-          <h1 className="text-[35px] font-bold">Tasks</h1>
-          <div className="flex gap-5">
+          <h1 className="text-[35px] font-bold flex-shrink-0">Tasks</h1>
+          <div className="flex gap-5 flex-shrink-0">
             <input
               ref={task}
               type="text"

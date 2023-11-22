@@ -80,12 +80,12 @@ export default function Task({
   return (
     <div
       key={index}
-      className=" bg-gray-200 p-2 gap-1 rounded-lg flex justify-between items-center  max-w-[500px]"
+      className=" bg-gray-200 p-2 gap-1 flex-shrink-0 rounded-lg flex justify-between items-center  max-w-[600px]"
     >
       <span
         onClick={completed}
         ref={taskName}
-        className=" border-solid  p-2 rounded border-gray-400 w-[60%] h-full sm:w-[120px]"
+        className=" border-solid  p-2 rounded border-gray-400 w-[60%] h-full sm:w-[200px] md:w-[300px]"
       >
         {name}
       </span>
