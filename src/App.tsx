@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import SideBar from './Components/SideBar';
 import AddProject from './Components/AddProject';
 import NoProject from './Components/NoProject';
@@ -14,7 +14,8 @@ function App() {
       | 'addTask'
       | 'removeTask'
       | 'updateTask'
-      | 'updateProject';
+      | 'updateProject'
+      | 'setAll';
     value: any;
   };
   //initial Data for Reducer
@@ -26,6 +27,8 @@ function App() {
   function ReducerFunction(state: dataType, action: actionType): dataType {
     if (action.type === 'changeProject') {
       return { ...state, selectedProject: action.value };
+    } else if (action.type == 'setAll') {
+      return { ...action.value };
     } else if (action.type === 'addProject') {
       return {
         selectedProject: null,
@@ -138,6 +141,30 @@ function App() {
       value: { task: task, id: id, index: index },
     });
   }
+  useEffect(() => {
+    setTimeout(() => {
+      if (
+        JSON.stringify(data) !==
+        JSON.stringify({
+          selectedProject: null,
+          projects: [],
+        })
+      ) {
+        console.log('updated');
+        window.localStorage.setItem('data', JSON.stringify(data));
+      } else {
+        window.localStorage.removeItem('data');
+      }
+    }, 1000);
+  }, [data.projects]);
+
+  useEffect(() => {
+    var dataString = localStorage.getItem('data');
+    if (dataString) {
+      var fetchedData = JSON.parse(dataString);
+      setData({ type: 'setAll', value: fetchedData });
+    }
+  }, []);
   return (
     <main className="bg-white h-screen w-screen flex flex-col sm:flex-row sm:pt-10 pt-3">
       <ToastContainer />
