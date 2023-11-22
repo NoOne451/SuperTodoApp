@@ -51,9 +51,10 @@ function App() {
         (project) => project.id === action.value.id
       );
       let project = state.projects[projectIndex];
-      const tasks = project.tasks.filter(
-        (task, index) => index !== action.value.index
-      );
+      const tasks = project.tasks.filter((task, index) => {
+        index !== action.value.index;
+        console.log(task);
+      });
       project.tasks = tasks;
       state.projects[projectIndex] = project;
       return { ...state, projects: [...state.projects] };

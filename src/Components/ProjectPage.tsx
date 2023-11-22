@@ -1,4 +1,4 @@
-import { createRef, useRef } from 'react';
+import { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
 import Task from './Task';
@@ -111,7 +111,7 @@ export default function ProjectPage({
               Add Task
             </button>
           </div>
-          <div className="w-full space-y-2">
+          <div className="w-full space-y-2 flex flex-col overflow-scroll hide">
             {tasks.map((task, index) => (
               <Task
                 key={index}
