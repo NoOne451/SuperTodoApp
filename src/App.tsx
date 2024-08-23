@@ -16,6 +16,7 @@ function App() {
       | 'updateTask'
       | 'updateProject'
       | 'setAll';
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     value: any;
   };
   //initial Data for Reducer
@@ -50,15 +51,18 @@ function App() {
       state.projects[projectIndex] = project;
       return { ...state, projects: [...state.projects] };
     } else if (action.type == 'removeTask') {
+      console.log(action);
       const projectIndex = state.projects.findIndex(
         (project) => project.id === action.value.id
       );
-      let project = state.projects[projectIndex];
-      const tasks = project.tasks.filter((task, index) => {
-        index !== action.value.index;
-        console.log(task);
-      });
+      const project = state.projects[projectIndex];
+      // console.log('project', project);
+
+      const tasks = project.tasks;
+      tasks.splice(action.value.index, 1);
+
       project.tasks = tasks;
+      // console.log('project', project);
       state.projects[projectIndex] = project;
       return { ...state, projects: [...state.projects] };
     } else if (action.type == 'updateTask') {
@@ -159,14 +163,14 @@ function App() {
   }, [data.projects]);
 
   useEffect(() => {
-    var dataString = localStorage.getItem('data');
+    const dataString = localStorage.getItem('data');
     if (dataString) {
-      var fetchedData = JSON.parse(dataString);
+      const fetchedData = JSON.parse(dataString);
       setData({ type: 'setAll', value: fetchedData });
     }
   }, []);
   return (
-    <main className="bg-white h-screen w-screen flex flex-col sm:flex-row sm:pt-10 pt-3">
+    <main className="flex flex-col w-screen h-screen pt-3 bg-white sm:flex-row sm:pt-10">
       <ToastContainer />
       <SideBar
         changeToAddProject={changeToAddProject}

@@ -30,7 +30,7 @@ export default function ProjectPage({
 }: props) {
   const task = useRef<HTMLInputElement>(null);
   const modal = useRef() as React.MutableRefObject<HTMLDivElement>;
-  var formatedDate = format(new Date(date), 'MMM dd,yyyy');
+  const formatedDate = format(new Date(date), 'MMM dd,yyyy');
   function submitHandler() {
     // console.log('clicked');
 
@@ -62,14 +62,14 @@ export default function ProjectPage({
   return (
     <>
       <div className="sm:w-[75%] p-6 sm:p-10 h-full flex flex-col gap-3 ">
-        <div className="w-full flex justify-between flex-shrink-0">
+        <div className="flex justify-between flex-shrink-0 w-full">
           <span className="text-[40px] font-bold">{title}</span>
           <div className="space-x-2">
             <button
               onClick={() =>
                 modal.current?.style.setProperty('display', 'flex')
               }
-              className="px-5 py-2 bg-black text-white  rounded-lg"
+              className="px-5 py-2 text-white bg-black rounded-lg"
             >
               Edit
             </button>
@@ -87,18 +87,18 @@ export default function ProjectPage({
                   theme: 'light',
                 });
               }}
-              className="px-5 py-2 bg-black text-white  rounded-lg"
+              className="px-5 py-2 text-white bg-black rounded-lg"
             >
               Delete
             </button>
           </div>
         </div>
-        <div className="text-gray-400 flex-shrink-0">{formatedDate}</div>
+        <div className="flex-shrink-0 text-gray-400">{formatedDate}</div>
         <div className="flex-shrink-0">{discription}</div>
         <div className=" border-t border-black border-solid w-[140%] mt-3 ml-[-30px]"></div>
-        <div className="flex flex-col sm:gap-6 gap-3">
+        <div className="flex flex-col gap-3 sm:gap-6">
           <h1 className="text-[35px] font-bold flex-shrink-0">Tasks</h1>
-          <div className="flex gap-5 flex-shrink-0">
+          <div className="flex flex-shrink-0 gap-5">
             <input
               ref={task}
               type="text"
@@ -111,7 +111,7 @@ export default function ProjectPage({
               Add Task
             </button>
           </div>
-          <div className="w-full space-y-2 flex flex-col overflow-scroll hide">
+          <div className="flex flex-col w-full space-y-2 overflow-scroll hide">
             {tasks.map((task, index) => (
               <Task
                 key={index}
